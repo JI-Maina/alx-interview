@@ -12,10 +12,17 @@ def makeChange(coins, total):
     if total <= 0:
         return 0
 
-    c_sum = 0
-    for coin in coins:
-        c_sum = c_sum + coin
+    coins.sort(reverse=True)
 
-    if c_sum > total:
+    num = 0
+    for item in coins:
+        while total >= item:
+            total = total - item
+            num += 1
+
+        if total == 0:
+            break
+
+    if total > 0:
         return -1
-    return 0
+    return num
